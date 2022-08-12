@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -10,20 +8,24 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 moveDirection;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
+    {
+        rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
     {
         ProcessInput();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         // Physics
         Move();
 
     }
 
-    void ProcessInput()
+    private void ProcessInput()
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
@@ -31,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = new Vector2(moveX, moveY).normalized;
     }
 
-    void Move()
+    private void Move()
     {
         rigidbody2D.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
