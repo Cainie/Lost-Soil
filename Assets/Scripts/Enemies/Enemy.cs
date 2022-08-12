@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,14 @@ public abstract class Enemy : MonoBehaviour
     private EnemyData _data;
     private Transform _playerLocation;
     private SpriteRenderer _spriteRenderer;
+
+    private void FixedUpdate()
+    {
+        if (isActiveAndEnabled)
+        {
+            Move();
+        }
+    }
 
     public void Initialize(Transform playerLocation)
     {
@@ -37,7 +46,8 @@ public abstract class Enemy : MonoBehaviour
 
     private void Move()
     {
-        
+        var step = _data.speed * Time.deltaTime;
+        transform.position = Vector2.MoveTowards(transform.position, _playerLocation.position, step);
     }
 
     private void DamagePlayer()

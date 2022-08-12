@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
     {
         _enemyPool = new ObjectPool<Enemy>(CreateEnemy,
             enemy => { enemy.gameObject.SetActive(true); },
-            enemy => { enemy.gameObject.SetActive(false); },
+            enemy => { enemy.gameObject.SetActive(false);},
             enemy => Destroy(enemy.gameObject),
             false);
     }
