@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class TestEnemy : Enemy
+namespace Enemies.EnemyTypes
 {
+    public class TestEnemy : Enemy
+    {
     
+    }
 }

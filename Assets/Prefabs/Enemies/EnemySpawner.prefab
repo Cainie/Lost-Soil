@@ -46,9 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 967881342488587622, guid: 3f779da59a83af543878053f2d17a491, type: 3}
-  spawnArea: {fileID: 5686528528227536645}
-  playerTransform: {fileID: 0}
-  waveAmount: 20
+  waveAmount: 5
   enemyData: {fileID: 11400000, guid: b31f7a69dd8ae9040b11ce1945ec96cb, type: 2}
 --- !u!114 &5686528528227536645
 MonoBehaviour:
@@ -62,4 +60,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172b44e128293184ca568330d0ebcbfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistanceToPlayer: 5
+  minDistanceToPlayer: 2
+  spawnAreaSize: {x: 20, y: 20}
