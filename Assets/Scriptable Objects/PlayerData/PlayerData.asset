@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21838daae0079064593b9f1828c25c96, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  health: 20
+  health: 17
   maxHealth: 20
   moveSpeed: 2
+  sprite: {fileID: 21300000, guid: bec191d8a245e6e4c84330bd82a44de2, type: 3}
   invulnerabilityColor: {r: 1, g: 1, b: 1, a: 1}
   invulnerabilityDurationInSeconds: 1.5
   invulnerabilityDeltaTime: 0.15

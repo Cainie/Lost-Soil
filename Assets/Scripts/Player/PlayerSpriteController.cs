@@ -19,6 +19,7 @@ namespace Player
         public void SetPlayerData(PlayerData playerData)
         {
             _playerData = playerData;
+            _playerSpriteRenderer.sprite = _playerData.sprite;
         }
 
         public void PlayerDamaged()
