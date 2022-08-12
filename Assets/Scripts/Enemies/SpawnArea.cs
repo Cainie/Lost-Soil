@@ -2,49 +2,52 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SpawnArea : MonoBehaviour
+namespace Enemies
 {
-    [SerializeField] private float minDistanceToPlayer;
-    [SerializeField] private Vector2 spawnAreaSize;
+    public class SpawnArea : MonoBehaviour
+    {
+        [SerializeField] private float minDistanceToPlayer;
+        [SerializeField] private Vector2 spawnAreaSize;
 
-    private Vector2 randomPosition;
-    private const int maxAwayFromPlayerLocationGenerationAttempts = 50;
+        private Vector2 randomPosition;
+        private const int maxAwayFromPlayerLocationGenerationAttempts = 50;
     
-    public Vector2 GetRandomPositionInSpawnArea(Vector2 playerPosition)
-    {
-        for (var i = 0; i < maxAwayFromPlayerLocationGenerationAttempts; i++)
+        public Vector2 GetRandomPositionInSpawnArea(Vector2 playerPosition)
         {
-            randomPosition = GenerateRandomPositionInSpawnArea();
-            var distanceToPlayer = Vector2.Distance(playerPosition, randomPosition);
-            if (distanceToPlayer > minDistanceToPlayer)
+            for (var i = 0; i < maxAwayFromPlayerLocationGenerationAttempts; i++)
             {
-                break;
+                randomPosition = GenerateRandomPositionInSpawnArea();
+                var distanceToPlayer = Vector2.Distance(playerPosition, randomPosition);
+                if (distanceToPlayer > minDistanceToPlayer)
+                {
+                    break;
+                }
             }
+
+            if (RandomLocationNearPlayerAnyway(playerPosition))
+            {
+                throw new Exception("Enemy location too close to player");
+            }
+            return randomPosition;
         }
 
-        if (RandomLocationNearPlayerAnyway(playerPosition))
+        private Vector2 GenerateRandomPositionInSpawnArea()
         {
-            throw new Exception("Enemy location too close to player");
+            var randomXPosition = Random.Range(-spawnAreaSize.x / 2, spawnAreaSize.x / 2);
+            var randomYPosition = Random.Range(-spawnAreaSize.y / 2, spawnAreaSize.y / 2);
+            return (Vector2)transform.localPosition + new Vector2(randomXPosition, randomYPosition);
         }
-        return randomPosition;
-    }
 
-    private Vector2 GenerateRandomPositionInSpawnArea()
-    {
-        var randomXPosition = Random.Range(-spawnAreaSize.x / 2, spawnAreaSize.x / 2);
-        var randomYPosition = Random.Range(-spawnAreaSize.y / 2, spawnAreaSize.y / 2);
-        return (Vector2)transform.localPosition + new Vector2(randomXPosition, randomYPosition);
-    }
+        private bool RandomLocationNearPlayerAnyway(Vector2 playerPosition)
+        {
+            var distanceToPlayer = Vector2.Distance(playerPosition, randomPosition);
+            return distanceToPlayer < minDistanceToPlayer;
+        }
 
-    private bool RandomLocationNearPlayerAnyway(Vector2 playerPosition)
-    {
-        var distanceToPlayer = Vector2.Distance(playerPosition, randomPosition);
-        return distanceToPlayer < minDistanceToPlayer;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawCube(transform.localPosition,spawnAreaSize);
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawCube(transform.localPosition,spawnAreaSize);
+        }
     }
 }

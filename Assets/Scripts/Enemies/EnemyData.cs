@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-[CreateAssetMenu(menuName = "EnemyData")]
-public class EnemyData : ScriptableObject
+namespace Enemies
 {
-    public Sprite sprite;
-    public int maxHealth;
-    public int health;
-    public int damage;
-    public float speed;
+    using UnityEngine;
+    
+    [CreateAssetMenu(menuName = "EnemyData")]
+    public class EnemyData : ScriptableObject
+    {
+        public Sprite sprite;
+        public int maxHealth;
+        public int health;
+        public int damage;
+        public float speed;
+        public float attackRange;
+    }
 }
