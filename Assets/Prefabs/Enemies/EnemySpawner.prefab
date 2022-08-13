@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8728424430952217378}
   - component: {fileID: 6745364738437330064}
   - component: {fileID: 5686528528227536645}
+  - component: {fileID: 5459233402353778277}
   m_Layer: 0
   m_Name: EnemySpawner
-  m_TagString: Untagged
+  m_TagString: EnemiesController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,3 +63,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistanceToPlayer: 2
   spawnAreaSize: {x: 20, y: 20}
+--- !u!114 &5459233402353778277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927962703888686162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf962061937cdf649971cb694a6ba40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
