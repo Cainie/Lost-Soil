@@ -1,6 +1,8 @@
 namespace Player
 {
     using System;
+    using EnemyWavesMechanic;
+    using Misc;
     using ResourcesSystem;
     using UnityEngine;
     
@@ -11,15 +13,17 @@ namespace Player
 
         public event Action<ResourceType, int> OnResourcePickedUp;
 
-        private PlayerHealthController _playerHealthController;
         private PlayerSpriteController _playerSpriteController;
         private PlayerMovementController _playerMovementController;
+        private PlayerHealthController _playerHealthController;
+        private PlayerHealthUIController _playerHealthUIController;
 
         private void Awake()
         {
             SetReferences();
             DistributePlayerData();
             SubscribeToEvents();
+            SetPlayerStartingHealth();
         }
         
         public void ReceiveAttack(int attackAmount)
@@ -37,6 +41,7 @@ namespace Player
             _playerHealthController = gameObject.GetComponent<PlayerHealthController>();
             _playerSpriteController = gameObject.GetComponent<PlayerSpriteController>();
             _playerMovementController = gameObject.GetComponent<PlayerMovementController>();
+            _playerHealthUIController = GameObject.FindGameObjectWithTag(Tags.PLAYER_HEALTH_UI_CONTROLLER).gameObject.GetComponent<PlayerHealthUIController>();
         }
 
         private void DistributePlayerData()
@@ -62,10 +67,17 @@ namespace Player
             Debug.Log("You died~~");
             Debug.Log("Ba dum tss~~");
         }
+
+        private void SetPlayerStartingHealth()
+        {
+            _playerHealthUIController.SetHealthAmountText(playerData.health);
+        }
         
         private void PlayerHealthController_OnPlayerDamaged()
         {
             _playerSpriteController.PlayerDamaged();
+            _playerHealthUIController.ChangeHealthUIFill(playerData.health, playerData.maxHealth);
+            _playerHealthUIController.SetHealthAmountText(playerData.health);
         }
     }
 }

@@ -37,8 +37,6 @@ namespace Player
         {
             _playerData.health -= attackAmount;
             OnPlayerDamaged?.Invoke();
-            Debug.Log("Damage Received");
-            Debug.Log("Current health: " + _playerData.health);
         }
 
         private void TriggerInvulnerability()
