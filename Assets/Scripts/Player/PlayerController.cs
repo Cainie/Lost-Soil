@@ -1,11 +1,15 @@
 namespace Player
 {
+    using System;
+    using ResourcesSystem;
     using UnityEngine;
     
     [RequireComponent(typeof(PlayerHealthController),typeof(PlayerSpriteController),typeof(PlayerMovementController))]
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private PlayerData playerData;
+
+        public event Action<ResourceType, int> OnResourcePickedUp;
 
         private PlayerHealthController _playerHealthController;
         private PlayerSpriteController _playerSpriteController;
@@ -16,6 +20,16 @@ namespace Player
             SetReferences();
             DistributePlayerData();
             SubscribeToEvents();
+        }
+        
+        public void ReceiveAttack(int attackAmount)
+        {
+            _playerHealthController.ReceiveAttack(attackAmount);
+        }
+
+        public void GainResource(ResourceType resourceType, int resourceAmount)
+        {
+            OnResourcePickedUp?.Invoke(resourceType, resourceAmount);
         }
 
         private void SetReferences()
@@ -36,11 +50,6 @@ namespace Player
         {
             _playerHealthController.OnPlayerDeath += PlayerHealthController_OnPlayerDeath;
             _playerHealthController.OnPlayerDamaged += PlayerHealthController_OnPlayerDamaged;
-        }
-
-        public void ReceiveAttack(int attackAmount)
-        {
-            _playerHealthController.ReceiveAttack(attackAmount);
         }
 
         private void PlayerHealthController_OnPlayerDeath()

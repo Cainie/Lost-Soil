@@ -1,5 +1,7 @@
 namespace Enemies
 {
+    using System.Collections.Generic;
+    using ResourcesSystem;
     using UnityEngine;
     
     [CreateAssetMenu(menuName = "EnemyData")]
@@ -10,6 +12,8 @@ namespace Enemies
         public int health;
         public int damage;
         public float speed;
-        public float attackRange;
+        public List<ResourceData> availableResourcesUponKill;
+        [Range(0.0f,1.0f)]
+        public float resourceDropChance;
     }
 }
