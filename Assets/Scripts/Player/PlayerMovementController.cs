@@ -6,6 +6,8 @@ namespace Player
     public class PlayerMovementController : MonoBehaviour
     {
         public float moveSpeed;
+        public Animator animator;
+        public bool isFlipped;
 
         private Rigidbody2D _rigidbody2D;
         private Vector2 _moveDirection;
@@ -18,7 +20,7 @@ namespace Player
 
         private void Update()
         {
-            ProcessInput();
+            ProcessInput();            
         }
 
         private void FixedUpdate()
@@ -44,6 +46,21 @@ namespace Player
         private void Move()
         {
             _rigidbody2D.velocity = new Vector2(_moveDirection.x * _playerData.moveSpeed, _moveDirection.y * moveSpeed);
+            
+            animator.SetFloat("Speed", (Mathf.Abs(_moveDirection.x)+ Mathf.Abs(_moveDirection.y)));
+
+            if(_moveDirection.x < 0 && isFlipped == false)          
+            {                     
+                animator.transform.Rotate(0, 180, 0);
+                isFlipped = true;
+            }
+            if (_moveDirection.x > 0 && isFlipped == true)
+            {
+                animator.transform.Rotate(0, 180, 0);
+                isFlipped = false;
+            }
+
+
         }
 
 
