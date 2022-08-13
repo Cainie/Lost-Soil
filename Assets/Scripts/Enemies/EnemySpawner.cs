@@ -3,6 +3,7 @@ using UnityEngine.Pool;
 
 namespace Enemies
 {
+    using EnemyWavesMechanic;
     using Misc;
 
     public class EnemySpawner : MonoBehaviour
@@ -15,19 +16,26 @@ namespace Enemies
     
         private SpawnArea _spawnArea;
         private Transform _playerTransform;
+        private WaveController _waveController;
         private ObjectPool<Enemy> _enemyPool;
 
         private void Awake()
         {
             GetReferences();
             CreateEnemyPool();
-            SpawnNextEnemyWave();
+            SubscribeToEvents();
         }
 
         private void GetReferences()
         {
             _spawnArea = gameObject.GetComponent<SpawnArea>();
             _playerTransform = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
+            _waveController = GameObject.FindGameObjectWithTag(Tags.WAVE_CONTROLLER).gameObject.GetComponent<WaveController>();
+        }
+
+        private void SubscribeToEvents()
+        {
+            _waveController.OnWaveTriggered += SpawnNextEnemyWave;
         }
 
         private void CreateEnemyPool()
