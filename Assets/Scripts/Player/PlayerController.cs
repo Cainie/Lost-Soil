@@ -1,7 +1,6 @@
 namespace Player
 {
-    using GameController;
-    using Misc;
+    using System;
     using ResourcesSystem;
     using UnityEngine;
     
@@ -10,10 +9,11 @@ namespace Player
     {
         [SerializeField] private PlayerData playerData;
 
+        public event Action<ResourceType, int> OnResourcePickedUp;
+
         private PlayerHealthController _playerHealthController;
         private PlayerSpriteController _playerSpriteController;
         private PlayerMovementController _playerMovementController;
-        private GameController _gameController;
 
         private void Awake()
         {
@@ -29,7 +29,7 @@ namespace Player
 
         public void GainResource(ResourceType resourceType, int resourceAmount)
         {
-            _gameController.GainResource(resourceType,resourceAmount);
+            OnResourcePickedUp?.Invoke(resourceType, resourceAmount);
         }
 
         private void SetReferences()
@@ -37,7 +37,6 @@ namespace Player
             _playerHealthController = gameObject.GetComponent<PlayerHealthController>();
             _playerSpriteController = gameObject.GetComponent<PlayerSpriteController>();
             _playerMovementController = gameObject.GetComponent<PlayerMovementController>();
-            _gameController = GameObject.FindGameObjectWithTag(Tags.GAME_CONTROLLER).gameObject.GetComponent<GameController>();
         }
 
         private void DistributePlayerData()

@@ -17,6 +17,8 @@ namespace Enemies
         private SpawnArea _spawnArea;
         private Transform _playerTransform;
         private WaveController _waveController;
+        private EnemiesController _enemiesController;
+        
         private ObjectPool<Enemy> _enemyPool;
 
         private void Awake()
@@ -29,6 +31,7 @@ namespace Enemies
         private void GetReferences()
         {
             _spawnArea = gameObject.GetComponent<SpawnArea>();
+            _enemiesController = gameObject.GetComponent<EnemiesController>();
             _playerTransform = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
             _waveController = GameObject.FindGameObjectWithTag(Tags.WAVE_CONTROLLER).gameObject.GetComponent<WaveController>();
         }
@@ -51,6 +54,7 @@ namespace Enemies
         {
             var enemy = Instantiate(enemyPrefab);
             enemy.Initialize(_playerTransform);
+            enemy.OnEnemyKilledByPlayer += _enemiesController.Enemy_OnEnemyKilledByPlayer;
             return enemy;
         
         }

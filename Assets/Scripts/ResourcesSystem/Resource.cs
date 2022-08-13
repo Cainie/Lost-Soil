@@ -3,7 +3,6 @@ namespace ResourcesSystem
     using Misc;
     using Player;
     using UnityEngine;
-    using UnityEngine.UI;
 
     public class Resource : MonoBehaviour
     {

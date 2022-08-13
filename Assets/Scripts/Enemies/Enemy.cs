@@ -1,5 +1,6 @@
 namespace Enemies
 {
+    using System;
     using UnityEngine;
     using Misc;
     using Player;
@@ -9,6 +10,9 @@ namespace Enemies
         private EnemyData _data;
         private Transform _playerLocation;
         private SpriteRenderer _spriteRenderer;
+        private EnemiesController _enemiesController;
+
+        public event Action<EnemyData> OnEnemyKilledByPlayer;
 
         private void FixedUpdate()
         {
@@ -55,11 +59,15 @@ namespace Enemies
         public void TakeDamage(int damageTaken)
         {
             _data.health -= damageTaken;
+            if (_data.health <= 0)
+            {
+                Die();
+            }
         }
 
         private void Die()
         {
-        
+            OnEnemyKilledByPlayer?.Invoke(_data);
         }
         
         private void OnTriggerEnter2D(Collider2D other)

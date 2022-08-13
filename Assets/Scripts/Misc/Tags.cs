@@ -7,5 +7,6 @@ namespace Misc
         public static readonly string GAME_CONTROLLER = "GameController";
         public static readonly string WAVE_CONTROLLER = "WaveController";
         public static readonly string RESOURCES_CONTROLLER = "ResourcesController";
+        public static readonly string ENEMIES_CONTROLLER = "EnemiesController";
     }
 }
