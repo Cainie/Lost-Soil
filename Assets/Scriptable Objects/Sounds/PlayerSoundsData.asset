@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3852c7ecdc91c03439d0044be3e852ad, type: 3}
+  m_Name: PlayerSoundsData
+  m_EditorClassIdentifier: 
+  playerMoveSounds:
+  - {fileID: 8300000, guid: bb33c06e6c7d3434d966b7dda0cecdff, type: 3}
+  - {fileID: 8300000, guid: f0ffe138e25a48545a53822231b6b4c1, type: 3}
+  playerWeaponSound: {fileID: 0}
+  playerHitSounds:
+  - {fileID: 8300000, guid: 6c718cfdcfd95e842b3e83afd2633744, type: 3}
+  - {fileID: 8300000, guid: a02214c8ddfd1b44894d09d8b03619d2, type: 3}
+  - {fileID: 8300000, guid: f91bc24b9d8effc4d960129026caa728, type: 3}
+  - {fileID: 8300000, guid: af153014a6ebf1a449480a81d44b64b7, type: 3}
+  - {fileID: 8300000, guid: 2e746e76e48b40943adc979ef04ab100, type: 3}
+  playerDeathSound:
+  - {fileID: 8300000, guid: 893eb8bb50eb47249a32a793199320e3, type: 3}
+  - {fileID: 8300000, guid: 18337257cd71ad14d88439f91ce172da, type: 3}
+  - {fileID: 8300000, guid: 07df6ad73e7721446b19e3e387fdd32a, type: 3}

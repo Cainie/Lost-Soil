@@ -9,10 +9,23 @@ namespace Enemies
     public class EnemiesController : MonoBehaviour
     {
         public event Action<ResourceType, int> OnEnemyDeathResourcesGained;
+        public event Action<EnemyType> OnEnemyKilledByPlayer;
+        public event Action<EnemyType> OnEnemyDamagedByPlayer;
+        public event Action<EnemyType> OnEnemyAttack;
 
         public void Enemy_OnEnemyKilledByPlayer(EnemyData enemyData)
         {
             EnemyKilledByPlayer(enemyData);
+        }
+
+        public void Enemy_OnEnemyDamagedByPlayer(EnemyData enemyData)
+        {
+            OnEnemyDamagedByPlayer?.Invoke(enemyData.enemyType);
+        }
+
+        public void Enemy_OnEnemyAttack(EnemyData enemyData)
+        {
+            OnEnemyAttack?.Invoke(enemyData.enemyType);
         }
 
         private void EnemyKilledByPlayer(EnemyData enemyData)
@@ -20,6 +33,7 @@ namespace Enemies
             if (!IsRandomResourceGained(enemyData.resourceDropChance)) return;
             var resourceGained = PickRandomDropResource(enemyData.availableResourcesUponKill);
             OnEnemyDeathResourcesGained?.Invoke(resourceGained.resourceType, resourceGained.resourceBasicAmount);
+            OnEnemyKilledByPlayer?.Invoke(enemyData.enemyType);
         }
 
         private bool IsRandomResourceGained(float resourceDropChance)
