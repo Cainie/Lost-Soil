@@ -20,7 +20,6 @@ namespace EnemyWavesMechanic
         {
             GetReferences();
             SubscribeToEvents();
-            StartNextWaveCountdown();
         }
 
         private void GetReferences()
@@ -33,6 +32,17 @@ namespace EnemyWavesMechanic
         {
             _waveTimer.OnTicked += WaveTimer_OnTicked;
             _waveTimer.OnTimerReachedZero += WaveTimer_OnTimerReachedZero;
+        }
+
+        public void StartWaves(int waveIndex)
+        {
+            _nextWaveIndex = waveIndex;
+            StartNextWaveCountdown();
+        }
+
+        public int GetWaveIndex()
+        {
+            return _nextWaveIndex;
         }
 
         private void StartNextWaveCountdown()

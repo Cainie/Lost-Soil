@@ -8,6 +8,7 @@ namespace Player
     {
         public event Action OnPlayerDeath;
         public event Action OnPlayerDamaged;
+        public event Action OnPlayerHealthValueLoaded;
 
         private PlayerData _playerData;
         private bool _isInvulnerable;
@@ -16,6 +17,12 @@ namespace Player
         public void SetPlayerData(PlayerData playerData)
         {            _playerData = playerData;
             _playerData.health = _playerData.maxHealth;
+        }
+
+        public void LoadPlayerHealthValue(int healthValue)
+        {
+            _playerData.health = healthValue;
+            OnPlayerHealthValueLoaded?.Invoke();
         }
 
         public void ReceiveAttack(int attackAmount)
