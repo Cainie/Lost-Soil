@@ -13,6 +13,8 @@ namespace Enemies
         private EnemiesController _enemiesController;
 
         public event Action<EnemyData> OnEnemyKilledByPlayer;
+        public event Action<EnemyData> OnEnemyDamagedByPlayer;
+        public event Action<EnemyData> OnEnemyAttack;
 
         private void FixedUpdate()
         {
@@ -62,6 +64,10 @@ namespace Enemies
             if (_data.health <= 0)
             {
                 Die();
+            } 
+            else
+            {
+                OnEnemyDamagedByPlayer?.Invoke(_data);
             }
         }
 
@@ -75,6 +81,7 @@ namespace Enemies
             if (!other.CompareTag(Tags.PLAYER)) return;
             var playerController = other.GetComponent<PlayerController>();
             playerController.ReceiveAttack(_data.damage);
+            OnEnemyAttack?.Invoke(_data);
             Destroy(gameObject);
         }
     }

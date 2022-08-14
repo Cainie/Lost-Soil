@@ -11,6 +11,10 @@ namespace Player
         [SerializeField] private PlayerData playerData;
 
         public event Action<ResourceType, int> OnResourcePickedUp;
+        public event Action OnPlayerDeath;
+        public event Action OnPlayerDamaged;
+        public event Action OnPlayerMove;
+        
 
         private PlayerSpriteController _playerSpriteController;
         private PlayerMovementController _playerMovementController;
@@ -72,6 +76,7 @@ namespace Player
             _playerHealthController.OnPlayerDeath += PlayerHealthController_OnPlayerDeath;
             _playerHealthController.OnPlayerDamaged += PlayerHealthController_OnPlayerDamaged;
             _playerHealthController.OnPlayerHealthValueLoaded += PlayerHealthController_OnPlayerHealthValueLoaded;
+            _playerMovementController.OnPlayerMove += PlayerMovementController_OnPlayerMove;
         }
 
         private void PlayerHealthController_OnPlayerDeath()
@@ -81,6 +86,7 @@ namespace Player
 
         private void Die()
         {
+            OnPlayerDeath?.Invoke();
             Debug.Log("You died~~");
             Debug.Log("Ba dum tss~~");
         }
@@ -95,12 +101,18 @@ namespace Player
             _playerSpriteController.PlayerDamaged();
             _playerHealthUIController.ChangeHealthUIFill(playerData.health, playerData.maxHealth);
             _playerHealthUIController.SetHealthAmountText(playerData.health);
+            OnPlayerDamaged?.Invoke();
         }
 
         private void PlayerHealthController_OnPlayerHealthValueLoaded()
         {
             _playerHealthUIController.ChangeHealthUIFill(playerData.health, playerData.maxHealth);
             _playerHealthUIController.SetHealthAmountText(playerData.health);
+        }
+
+        private void PlayerMovementController_OnPlayerMove()
+        {
+            OnPlayerMove?.Invoke();
         }
     }
 }

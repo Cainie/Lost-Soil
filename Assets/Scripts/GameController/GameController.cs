@@ -45,8 +45,14 @@ namespace GameController
 
         private void SubscribeToEvents()
         {
-            _playerController.OnResourcePickedUp += GainResource;
+            _playerController.OnResourcePickedUp += PlayerController_OnResourcePickedUp;
+            _playerController.OnPlayerDeath += PlayerController_OnPlayerDeath;
+            _playerController.OnPlayerDamaged += PlayerController_OnPlayerDamaged;
+            _playerController.OnPlayerMove += PlayerController_OnPlayerMove;
             _enemiesController.OnEnemyDeathResourcesGained += GainResource;
+            _enemiesController.OnEnemyKilledByPlayer += EnemyController_OnEnemyKilledByPlayer;
+            _enemiesController.OnEnemyDamagedByPlayer += EnemyController_OnEnemyDamagedByPlayer;
+            _enemiesController.OnEnemyAttack += EnemyController_OnEnemyAttack;
         }
 
         private void StartGame()
@@ -103,19 +109,63 @@ namespace GameController
             _resourcesController.UseResource(resourceType,resourceAmount);
         }
 
-        private void PlaySound(SoundType soundType)
-        {
-            _soundManager.PlaySound(soundType);
-        }
-        
-        
-
         private void PrepareGameState()
         {
             _gameState.health = _playerController.GetPlayerHealth();
             _gameState.position = playerSpawnPosition.position;
             _gameState.waveIndex = _waveController.GetWaveIndex();
             _gameState.resourcesStorage = _resourcesController.GetResourceStorage();
+        }
+
+        private void PlaySound(SoundType soundType)
+        {
+            _soundManager.PlaySound(soundType);
+        }
+
+        private void PlayPlayerSound(SoundType soundType)
+        {
+            _soundManager.PlayPlayerSound(soundType);
+        }
+
+        private void PlayEnemySound(SoundType soundType, EnemyType enemyType)
+        {
+            _soundManager.PlayEnemySound(soundType, enemyType);
+        }
+
+        private void PlayerController_OnResourcePickedUp(ResourceType resourceType, int resourceAmount)
+        {
+            GainResource(resourceType,resourceAmount);
+            PlaySound(SoundType.ResourcePickedUpSound);
+        }
+
+        private void PlayerController_OnPlayerDeath()
+        {
+            PlayPlayerSound(SoundType.PlayerDeathSound);
+        }
+
+        private void PlayerController_OnPlayerDamaged()
+        {
+            PlayPlayerSound(SoundType.PlayerHitSound);
+        }
+
+        private void PlayerController_OnPlayerMove()
+        {
+            PlayPlayerSound(SoundType.PlayerMoveSound);
+        }
+
+        private void EnemyController_OnEnemyKilledByPlayer(EnemyType enemyType)
+        {
+            PlayEnemySound(SoundType.EnemyDeathSound, enemyType);
+        }
+        
+        private void EnemyController_OnEnemyDamagedByPlayer(EnemyType enemyType)
+        {
+            PlayEnemySound(SoundType.EnemyHitSound, enemyType);
+        }
+        
+        private void EnemyController_OnEnemyAttack(EnemyType enemyType)
+        {
+            PlayEnemySound(SoundType.EnemyAttackSound, enemyType);
         }
     }
 }

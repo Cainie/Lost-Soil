@@ -55,6 +55,8 @@ namespace Enemies
             var enemy = Instantiate(enemyPrefab);
             enemy.Initialize(_playerTransform);
             enemy.OnEnemyKilledByPlayer += _enemiesController.Enemy_OnEnemyKilledByPlayer;
+            enemy.OnEnemyDamagedByPlayer += _enemiesController.Enemy_OnEnemyDamagedByPlayer;
+            enemy.OnEnemyDamagedByPlayer += _enemiesController.Enemy_OnEnemyAttack;
             return enemy;
         
         }

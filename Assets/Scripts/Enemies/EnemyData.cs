@@ -8,6 +8,7 @@ namespace Enemies
     public class EnemyData : ScriptableObject
     {
         public Sprite sprite;
+        public EnemyType enemyType;
         public int maxHealth;
         public int health;
         public int damage;

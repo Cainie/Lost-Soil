@@ -8,7 +8,7 @@ namespace SoundManager
         PlayerDeathSound,
         EnemyHitSound,
         EnemyDeathSound,
-        EnemyAttackedSound,
+        EnemyAttackSound,
         BuildingBuiltSound,
         ResourcePickedUpSound,
     }

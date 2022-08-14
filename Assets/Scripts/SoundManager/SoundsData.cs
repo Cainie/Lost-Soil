@@ -1,19 +1,15 @@
 namespace SoundManager
 {
+    using System.Collections.Generic;
     using UnityEngine;
 
-    [CreateAssetMenu(menuName = "SoundsData")]
+    [CreateAssetMenu(menuName = "Sounds/SoundsData")]
     public class SoundsData : ScriptableObject
     {
         public AudioClip[] gameMusicClipsArray = new AudioClip[0];
-        
-        public AudioClip playerMoveSound;
-        public AudioClip playerWeaponSound;
-        public AudioClip playerHitSound;
-        public AudioClip playerDeathSound;
-        public AudioClip enemyHitSound;
-        public AudioClip enemyDeathSound;
-        public AudioClip enemyAttackedSound;
+
+        public PlayerSoundsData playerSoundsData;
+        public List<EnemyTypeSoundsData> enemiesSoundsData;
         public AudioClip buildingBuiltSound;
         public AudioClip resourcePickedUpSound;
     }
