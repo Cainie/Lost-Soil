@@ -79,5 +79,7 @@ namespace Player
             _playerHealthUIController.ChangeHealthUIFill(playerData.health, playerData.maxHealth);
             _playerHealthUIController.SetHealthAmountText(playerData.health);
         }
+
+
     }
 }

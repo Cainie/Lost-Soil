@@ -1,7 +1,7 @@
 namespace Player
 {
     using UnityEngine;
-    
+
     [CreateAssetMenu(menuName = "PlayerData")]
     public class PlayerData : ScriptableObject
     {
@@ -10,9 +10,10 @@ namespace Player
         public float moveSpeed;
 
         public Sprite sprite;
-        
+
         public Color invulnerabilityColor;
         public float invulnerabilityDurationInSeconds;
         public float invulnerabilityDeltaTime;
+
     }
 }

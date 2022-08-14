@@ -44,7 +44,7 @@ namespace Player
         }
 
         private void Move()
-        {
+        {          
             _rigidbody2D.velocity = new Vector2(_moveDirection.x * _playerData.moveSpeed, _moveDirection.y * moveSpeed);
             
             animator.SetFloat("Speed", (Mathf.Abs(_moveDirection.x)+ Mathf.Abs(_moveDirection.y)));

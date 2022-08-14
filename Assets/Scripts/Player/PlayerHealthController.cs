@@ -14,8 +14,7 @@ namespace Player
         private TimeSpan _lastInvulnerableFrameSpan;
 
         public void SetPlayerData(PlayerData playerData)
-        {
-            _playerData = playerData;
+        {            _playerData = playerData;
             _playerData.health = _playerData.maxHealth;
         }
 
@@ -60,5 +59,8 @@ namespace Player
                 OnPlayerDeath?.Invoke();
             }
         }
-    }
+
+    }  
+
+
 }
