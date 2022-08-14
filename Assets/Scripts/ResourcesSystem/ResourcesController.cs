@@ -13,13 +13,17 @@ namespace ResourcesSystem
         private void Awake()
         {
             GetReferences();
-            InitializeResourcesStorage();
             SubscribeToEvents();
         }
 
         private void Start()
         {
             _resourcesUIController.InitializeResourceUIControllers(resourcesData);
+        }
+
+        public void InitializeResourceStorageController()
+        {
+            InitializeResourcesStorage();
         }
 
         public void GainResource(ResourceType resourceType, int resourceAmount)
@@ -30,6 +34,16 @@ namespace ResourcesSystem
         public void UseResource(ResourceType resourceType, int resourceAmount)
         {
             _resourcesStorageController.UseResource(resourceType,resourceAmount);
+        }
+
+        public List<StoredResourceDataModel> GetResourceStorage()
+        {
+            return _resourcesStorageController.GetResourceStorage();
+        }
+
+        public void SetResourceStorage(List<StoredResourceDataModel> storage)
+        {
+            _resourcesStorageController.SetResourceStorage(storage);
         }
 
         private void GetReferences()

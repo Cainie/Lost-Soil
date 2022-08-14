@@ -1,7 +1,6 @@
 namespace Player
 {
     using System;
-    using EnemyWavesMechanic;
     using Misc;
     using ResourcesSystem;
     using UnityEngine;
@@ -21,7 +20,6 @@ namespace Player
         private void Awake()
         {
             SetReferences();
-            DistributePlayerData();
             SubscribeToEvents();
             SetPlayerStartingHealth();
         }
@@ -36,6 +34,30 @@ namespace Player
             OnResourcePickedUp?.Invoke(resourceType, resourceAmount);
         }
 
+        public void DistributePlayerData()
+        {
+            _playerHealthController.SetPlayerData(playerData);
+            _playerSpriteController.SetPlayerData(playerData);
+            _playerMovementController.SetPlayerData(playerData);
+        }
+        
+        public int GetPlayerHealth()
+        {
+            return playerData.health;
+        }
+
+        public void DistributePlayerLoadedData(int health)
+        {
+            _playerHealthController.LoadPlayerHealthValue(health);
+            _playerSpriteController.SetPlayerData(playerData);
+            _playerMovementController.SetPlayerData(playerData);
+        }
+
+        public void ResetPlayerPosition(Vector2 position)
+        {
+            gameObject.transform.position = position;
+        }
+
         private void SetReferences()
         {
             _playerHealthController = gameObject.GetComponent<PlayerHealthController>();
@@ -44,17 +66,12 @@ namespace Player
             _playerHealthUIController = GameObject.FindGameObjectWithTag(Tags.PLAYER_HEALTH_UI_CONTROLLER).gameObject.GetComponent<PlayerHealthUIController>();
         }
 
-        private void DistributePlayerData()
-        {
-            _playerHealthController.SetPlayerData(playerData);
-            _playerSpriteController.SetPlayerData(playerData);
-            _playerMovementController.SetPlayerData(playerData);
-        }
 
         private void SubscribeToEvents()
         {
             _playerHealthController.OnPlayerDeath += PlayerHealthController_OnPlayerDeath;
             _playerHealthController.OnPlayerDamaged += PlayerHealthController_OnPlayerDamaged;
+            _playerHealthController.OnPlayerHealthValueLoaded += PlayerHealthController_OnPlayerHealthValueLoaded;
         }
 
         private void PlayerHealthController_OnPlayerDeath()
@@ -80,6 +97,10 @@ namespace Player
             _playerHealthUIController.SetHealthAmountText(playerData.health);
         }
 
-
+        private void PlayerHealthController_OnPlayerHealthValueLoaded()
+        {
+            _playerHealthUIController.ChangeHealthUIFill(playerData.health, playerData.maxHealth);
+            _playerHealthUIController.SetHealthAmountText(playerData.health);
+        }
     }
 }

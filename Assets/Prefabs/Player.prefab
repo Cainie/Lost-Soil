@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2053446507805605660}
   - component: {fileID: 5217985420247512928}
   - component: {fileID: 200558206664852054}
+  - component: {fileID: 66451366}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -116,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  animator: {fileID: 0}
+  animator: {fileID: 66451366}
   isFlipped: 0
 --- !u!50 &1935040721825936520
 Rigidbody2D:
@@ -189,3 +190,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 4}
   m_EdgeRadius: 0
+--- !u!95 &66451366
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601939469628942976}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 89fc0f25dc6759b47a18fc3283c03bc3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
