@@ -8,6 +8,8 @@ TagManager:
   - ResourcesController
   - EnemiesController
   - PlayerHealthUIController
+  - SoundManager
+  - SaveStateSystem
   layers:
   - Default
   - TransparentFX

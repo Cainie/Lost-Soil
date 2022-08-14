@@ -52,5 +52,15 @@ namespace ResourcesSystem
             var resourceAmount = _resourcesStorage.FirstOrDefault(x => x.resourceType == resourceType).amount;
             return resourceAmount;
         }
+
+        public List<StoredResourceDataModel> GetResourceStorage()
+        {
+            return _resourcesStorage;
+        }
+
+        public void SetResourceStorage(List<StoredResourceDataModel> resourcesStorage)
+        {
+            _resourcesStorage = resourcesStorage;
+        }
     }
 }

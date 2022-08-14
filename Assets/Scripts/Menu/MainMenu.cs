@@ -1,19 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-public class MainMenu : MonoBehaviour
+namespace Menu
 {
+    using Misc;
+    using UnityEngine;
+    using UnityEngine.SceneManagement;
+    
+    public class MainMenu : MonoBehaviour
+    {
  
-    public void PlayGame()
-    {
-        SceneManager.LoadScene("ResourcesMechanicTestScene");
-    }
+        public void PlayGame()
+        {
+            GlobalVariables.isNewGame = true;
+            SceneManager.LoadScene("ResourcesMechanicTestScene");
+        }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
 
+    }
 }
