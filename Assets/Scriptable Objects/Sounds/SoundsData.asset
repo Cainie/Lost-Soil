@@ -17,4 +17,4 @@ MonoBehaviour:
   enemiesSoundsData:
   - {fileID: 11400000, guid: ba3389ddafd1cd84993db496b33b3b18, type: 2}
   buildingBuiltSound: {fileID: 0}
-  resourcePickedUpSound: {fileID: 0}
+  resourcePickedUpSound: {fileID: 8300000, guid: 41ff04531f873bb409e496e30b6cc94f, type: 3}
