@@ -8,7 +8,8 @@ namespace GameController
     using SoundManager;
     using SaveSystem;
     using UnityEngine;
-    
+    using Weapons;
+
     public class GameController : MonoBehaviour
     {
         [SerializeField] private Transform playerSpawnPosition;
@@ -21,6 +22,7 @@ namespace GameController
         private EnemiesController _enemiesController;
         private WaveController _waveController;
         private SoundManager _soundManager;
+        private WeaponController _weaponController;
         
         private void Awake()
         {
@@ -41,6 +43,7 @@ namespace GameController
             _waveController = GameObject.FindGameObjectWithTag(Tags.WAVE_CONTROLLER).gameObject.GetComponent<WaveController>();
             _soundManager = GameObject.FindGameObjectWithTag(Tags.SOUND_MANAGER).gameObject.GetComponent<SoundManager>();
             _saveStateSystem = GameObject.FindGameObjectWithTag(Tags.SAVE_STATE_SYSTEM).gameObject.GetComponent<SaveStateSystem>();
+            _weaponController = GameObject.FindGameObjectWithTag(Tags.WEAPON_CONTROLLER).gameObject.GetComponent<WeaponController>();
         }
 
         private void SubscribeToEvents()
@@ -53,6 +56,7 @@ namespace GameController
             _enemiesController.OnEnemyKilledByPlayer += EnemyController_OnEnemyKilledByPlayer;
             _enemiesController.OnEnemyDamagedByPlayer += EnemyController_OnEnemyDamagedByPlayer;
             _enemiesController.OnEnemyAttack += EnemyController_OnEnemyAttack;
+            _weaponController.OnWeaponShot += WeaponController_OnWeaponShot;
         }
 
         private void StartGame()
@@ -132,6 +136,11 @@ namespace GameController
             _soundManager.PlayEnemySound(soundType, enemyType);
         }
 
+        private void PlayWeaponSound(SoundType soundType, WeaponType weaponType)
+        {
+            _soundManager.PlayWeaponSound(soundType, weaponType);
+        }
+
         private void PlayerController_OnResourcePickedUp(ResourceType resourceType, int resourceAmount)
         {
             GainResource(resourceType,resourceAmount);
@@ -166,6 +175,11 @@ namespace GameController
         private void EnemyController_OnEnemyAttack(EnemyType enemyType)
         {
             PlayEnemySound(SoundType.EnemyAttackSound, enemyType);
+        }
+
+        private void WeaponController_OnWeaponShot(WeaponType weaponType)
+        {
+            PlayWeaponSound(SoundType.PlayerWeaponSound, weaponType);
         }
     }
 }

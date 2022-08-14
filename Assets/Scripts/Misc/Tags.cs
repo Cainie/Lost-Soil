@@ -11,5 +11,6 @@ namespace Misc
         public static readonly string PLAYER_HEALTH_UI_CONTROLLER = "PlayerHealthUIController";
         public static readonly string SOUND_MANAGER = "SoundManager";
         public static readonly string SAVE_STATE_SYSTEM = "SaveStateSystem";
+        public static readonly string WEAPON_CONTROLLER = "WeaponController";
     }
 }

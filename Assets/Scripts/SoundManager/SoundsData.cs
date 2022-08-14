@@ -10,6 +10,7 @@ namespace SoundManager
 
         public PlayerSoundsData playerSoundsData;
         public List<EnemyTypeSoundsData> enemiesSoundsData;
+        public List<WeaponTypeSoundData> weaponsSoundsData;
         public AudioClip buildingBuiltSound;
         public AudioClip resourcePickedUpSound;
     }

@@ -16,5 +16,7 @@ MonoBehaviour:
   playerSoundsData: {fileID: 11400000, guid: 21f0136234c4f76449727c35e8e6a121, type: 2}
   enemiesSoundsData:
   - {fileID: 11400000, guid: ba3389ddafd1cd84993db496b33b3b18, type: 2}
+  weaponsSoundsData:
+  - {fileID: 11400000, guid: f870297d75740b34aa1a29e027753432, type: 2}
   buildingBuiltSound: {fileID: 0}
   resourcePickedUpSound: {fileID: 8300000, guid: 41ff04531f873bb409e496e30b6cc94f, type: 3}

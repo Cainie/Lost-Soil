@@ -17,6 +17,7 @@ namespace Player
         public void SetPlayerData(PlayerData playerData)
         {            _playerData = playerData;
             _playerData.health = _playerData.maxHealth;
+            OnPlayerHealthValueLoaded?.Invoke();
         }
 
         public void LoadPlayerHealthValue(int healthValue)
