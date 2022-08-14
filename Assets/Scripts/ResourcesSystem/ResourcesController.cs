@@ -19,12 +19,12 @@ namespace ResourcesSystem
 
         private void Start()
         {
-            _resourcesUIController.InitializeResourceUIControllers(resourcesData);
+            _resourcesUIController.InitializeResourceUIControllers(resourcesData);            
         }
 
         public void GainResource(ResourceType resourceType, int resourceAmount)
         {
-            _resourcesStorageController.StoreResource(resourceType,resourceAmount);
+            _resourcesStorageController.StoreResource(resourceType,resourceAmount);           
         }
 
         public void UseResource(ResourceType resourceType, int resourceAmount)
