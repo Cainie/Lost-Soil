@@ -62,11 +62,14 @@ namespace Player
             Die();
         }
 
+        /* 
         private void Die()
         {
             Debug.Log("You died~~");
             Debug.Log("Ba dum tss~~");
+
         }
+       */
 
         private void SetPlayerStartingHealth()
         {
@@ -79,6 +82,16 @@ namespace Player
             _playerHealthUIController.ChangeHealthUIFill(playerData.health, playerData.maxHealth);
             _playerHealthUIController.SetHealthAmountText(playerData.health);
         }
+
+
+        //Maciek
+
+        public GameObject DeathScript;
+        private void Die()
+        {            
+            DeathScript.GetComponent<DeathScreen>().Death();
+        }
+
 
 
     }
