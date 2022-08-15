@@ -6,8 +6,17 @@ using Misc;
 using GameController;
 
 public class BuildingMenu : MonoBehaviour
-{   
-    
+{
+    public GameObject ResourcesStorageController;
+    ResourceType Wood = (ResourceType)System.Enum.Parse(typeof(ResourceType), "Wood");
+    ResourceType Stone = (ResourceType)System.Enum.Parse(typeof(ResourceType), "Stone");
+    ResourceType Food = (ResourceType)System.Enum.Parse(typeof(ResourceType), "Food");
+    ResourceType Energy = (ResourceType)System.Enum.Parse(typeof(ResourceType), "Energy");
+
+    private bool enoughResources = false;
+
+    private int woodCurrentAmount, stoneCurrentAmount, foodCurrentAmount, energyCurrentAmount;
+
     public Image buildingImage; 
 
     public TMP_Text titleText;
@@ -15,12 +24,12 @@ public class BuildingMenu : MonoBehaviour
     public TMP_Text description;
 
     private int buidlingLevel;
-    private int buildingId;
-
+    private int buildingId = 0;
+   
 
     int[,] ResourceNeeded = 
     {
-        {100, 100, 100, 100},
+        {10, 10, 10, 10},
         {200, 200, 200, 200},
         {300, 300, 300, 300},
         {400, 400, 400, 400},
@@ -36,7 +45,7 @@ public class BuildingMenu : MonoBehaviour
     {
         "Pretty basic looking lumberyard",
         "Quarry, it looks like it came from the STONE age. HA!",
-        "The one and olny Granary",
+        "The one and only Granary",
         "Solar Panels means free energy. Yay!",
         "I can see the mountains from up here",
         "Walls are a necessity here, without them I would be already gone."
@@ -61,7 +70,7 @@ public class BuildingMenu : MonoBehaviour
 
     private void OpenLumberyard()
     {
-        buildingId = 0;
+        buildingId = 0;       
         UpdateUI();
     }
 
@@ -117,27 +126,39 @@ public class BuildingMenu : MonoBehaviour
         switch (buildingId)
         {
             case 0:
-                BuildingLevels[0] += 1;
+                checkResources();
+                if (enoughResources ==true)
+                { BuildingLevels[0] += 1; }
                 OpenLumberyard();
                 break;
             case 1:
-                BuildingLevels[1] += 1;
+                checkResources();
+                if (enoughResources == true)
+                { BuildingLevels[1] += 1; }
                 OpenQuarry();
                 break;
             case 2:
-                BuildingLevels[2] += 1;
+                checkResources();
+                if (enoughResources == true)
+                { BuildingLevels[2] += 1; }
                 OpenGranary();
                 break;
             case 3:
-                BuildingLevels[3] += 1;
+                checkResources();
+                if (enoughResources == true)
+                { BuildingLevels[3] += 1; }
                 OpenSolarpanel();
                 break;
             case 4:
-                BuildingLevels[4] += 1;
+                checkResources();
+                if (enoughResources == true)
+                { BuildingLevels[4] += 1; }
                 OpenTower();
                 break;
             case 5:
-                BuildingLevels[5] += 1;
+                checkResources();
+                if (enoughResources == true)
+                { BuildingLevels[5] += 1; }
                 OpenWalls();
                 break;
         }
@@ -167,7 +188,7 @@ public class BuildingMenu : MonoBehaviour
 
     public void Resume()
     {
-        buildingMenuUI.SetActive(false);
+        buildingMenuUI.SetActive(false);        
         Time.timeScale = 1f;
         GameIsPaused = false;        
     }
@@ -177,6 +198,42 @@ public class BuildingMenu : MonoBehaviour
         buildingMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;       
+    }
+
+    //Resources Info
+
+    
+    private void checkResources()
+    {
+        buidlingLevel = BuildingLevels[buildingId];
+        woodCurrentAmount = ResourcesStorageController.GetComponent<ResourcesStorageController>().GetStoredResourceAmount(Wood);
+        stoneCurrentAmount = ResourcesStorageController.GetComponent<ResourcesStorageController>().GetStoredResourceAmount(Stone);
+        foodCurrentAmount = ResourcesStorageController.GetComponent<ResourcesStorageController>().GetStoredResourceAmount(Food);
+        energyCurrentAmount = ResourcesStorageController.GetComponent<ResourcesStorageController>().GetStoredResourceAmount(Energy);
+        Debug.Log(woodCurrentAmount);
+        Debug.Log(ResourceNeeded[(buidlingLevel - 1), 0]);
+
+        if ((ResourceNeeded[(buidlingLevel - 1), 0])<= woodCurrentAmount &&
+            (ResourceNeeded[(buidlingLevel - 1), 1])<= stoneCurrentAmount &&
+            (ResourceNeeded[(buidlingLevel - 1), 2])<= foodCurrentAmount &&
+            (ResourceNeeded[(buidlingLevel - 1), 3])<= energyCurrentAmount)
+        {
+            ResourcesStorageController.GetComponent<ResourcesStorageController>().UseResource(Wood, ResourceNeeded[(buidlingLevel - 1), 0]);
+            ResourcesStorageController.GetComponent<ResourcesStorageController>().UseResource(Stone, ResourceNeeded[(buidlingLevel - 1), 1]);
+            ResourcesStorageController.GetComponent<ResourcesStorageController>().UseResource(Food, ResourceNeeded[(buidlingLevel - 1), 2]);
+            ResourcesStorageController.GetComponent<ResourcesStorageController>().UseResource(Energy, ResourceNeeded[(buidlingLevel - 1), 3]);
+            enoughResources = true;
+        }
+        else
+        {
+            enoughResources = false;
+        }
+            
+    }
+
+    private void Start()
+    {
+        UpdateUI();
     }
 
 

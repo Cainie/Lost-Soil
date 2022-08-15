@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: TestEnemy
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 50810d58afcad054eae10854ee3faac4, type: 3}
+  enemyType: 0
   maxHealth: 20
   health: 20
   damage: 1
   speed: 2
-  attackRange: 0
+  availableResourcesUponKill:
+  - {fileID: 11400000, guid: 821ebf03de4d63541bc9ae5ade92420a, type: 2}
+  - {fileID: 11400000, guid: 6e2279d4c88e77c48a770c30e7aee748, type: 2}
+  - {fileID: 11400000, guid: 1ae60e735ccb22f4389b49cc4311ff90, type: 2}
+  - {fileID: 11400000, guid: eeaff06cce6e496489010a3918aacbf2, type: 2}
+  resourceDropChance: 0.5

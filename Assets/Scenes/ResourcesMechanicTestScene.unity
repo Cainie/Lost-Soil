@@ -672,6 +672,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3060515809172320390, guid: 60cf0b6bc4c27a649be90e2b51ceb0e8, type: 3}
+      propertyPath: ResourcesStorageController
+      value: 
+      objectReference: {fileID: 141260867}
     - target: {fileID: 3060515809172320393, guid: 60cf0b6bc4c27a649be90e2b51ceb0e8, type: 3}
       propertyPath: m_Name
       value: BuildingUI
@@ -803,10 +807,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 141260867}
-    - target: {fileID: 5606484501866151990, guid: bb65b7fff9a865849919b87aec66d472, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7442935645818033923, guid: bb65b7fff9a865849919b87aec66d472, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -894,10 +894,6 @@ PrefabInstance:
     - target: {fileID: 7442935645818033935, guid: bb65b7fff9a865849919b87aec66d472, type: 3}
       propertyPath: m_Name
       value: PauseMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 7442935645818033935, guid: bb65b7fff9a865849919b87aec66d472, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7442935647391966765, guid: bb65b7fff9a865849919b87aec66d472, type: 3}
       propertyPath: m_IsActive
