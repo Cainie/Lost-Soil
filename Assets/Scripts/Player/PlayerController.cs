@@ -52,7 +52,7 @@ namespace Player
 
         public void DistributePlayerLoadedData(int health)
         {
-            _playerHealthController.LoadPlayerHealthValue(health);
+            _playerHealthController.LoadPlayerHealthValue(playerData,health);
             _playerSpriteController.SetPlayerData(playerData);
             _playerMovementController.SetPlayerData(playerData);
         }
