@@ -58,9 +58,8 @@ namespace Enemies
             enemy.OnEnemyKilledByPlayer += _enemiesController.Enemy_OnEnemyKilledByPlayer;
             enemy.OnEnemyKilled += Enemy_OnEnemyKilledByPlayer;
             enemy.OnEnemyDamagedByPlayer += _enemiesController.Enemy_OnEnemyDamagedByPlayer;
-            enemy.OnEnemyDamagedByPlayer += _enemiesController.Enemy_OnEnemyAttack;
+            enemy.OnEnemyAttack += _enemiesController.Enemy_OnEnemyAttack;
             return enemy;
-        
         }
     
         private void SpawnNextEnemyWave()

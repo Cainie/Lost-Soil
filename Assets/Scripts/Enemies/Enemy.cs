@@ -8,15 +8,17 @@ namespace Enemies
     public abstract class Enemy : MonoBehaviour
     {
         private EnemyData _data;
+        private EnemyInternalData _enemyInternalData;
         private Transform _playerLocation;
         private SpriteRenderer _spriteRenderer;
         private EnemiesController _enemiesController;
+        private int _currentHealth;
 
         public event Action<EnemyData> OnEnemyKilledByPlayer;
         public event Action<Enemy> OnEnemyKilled;
         public event Action<EnemyData> OnEnemyDamagedByPlayer;
         public event Action<EnemyData> OnEnemyAttack;
-
+        
         private void FixedUpdate()
         {
             if (isActiveAndEnabled)
@@ -39,7 +41,7 @@ namespace Enemies
 
         private void ApplyData()
         {
-            _data.health = _data.maxHealth;
+            _currentHealth = _data.maxHealth;
             _spriteRenderer.sprite = _data.sprite;
         }
 
@@ -61,14 +63,13 @@ namespace Enemies
 
         public void TakeDamage(int damageTaken)
         {
-            _data.health -= damageTaken;
-            if (_data.health <= 0)
+            _currentHealth -= damageTaken;
+            if (_currentHealth <= 0)
             {
                 Die();
             } 
             else
             {
-                OnEnemyKilled?.Invoke(this);
                 OnEnemyDamagedByPlayer?.Invoke(_data);
             }
         }
@@ -76,6 +77,7 @@ namespace Enemies
         private void Die()
         {
             OnEnemyKilledByPlayer?.Invoke(_data);
+            OnEnemyKilled?.Invoke(this);
         }
         
         private void OnTriggerEnter2D(Collider2D other)

@@ -10,7 +10,6 @@ namespace Enemies
         public Sprite sprite;
         public EnemyType enemyType;
         public int maxHealth;
-        public int health;
         public int damage;
         public float speed;
         public List<ResourceData> availableResourcesUponKill;
