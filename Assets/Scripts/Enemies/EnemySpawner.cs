@@ -3,6 +3,7 @@ using UnityEngine.Pool;
 
 namespace Enemies
 {
+    using System;
     using EnemyWavesMechanic;
     using Misc;
 
@@ -55,6 +56,7 @@ namespace Enemies
             var enemy = Instantiate(enemyPrefab);
             enemy.Initialize(_playerTransform);
             enemy.OnEnemyKilledByPlayer += _enemiesController.Enemy_OnEnemyKilledByPlayer;
+            enemy.OnEnemyKilled += Enemy_OnEnemyKilledByPlayer;
             enemy.OnEnemyDamagedByPlayer += _enemiesController.Enemy_OnEnemyDamagedByPlayer;
             enemy.OnEnemyDamagedByPlayer += _enemiesController.Enemy_OnEnemyAttack;
             return enemy;
@@ -76,5 +78,11 @@ namespace Enemies
             enemy.ChangeAndApplyData(enemyData);
             enemy.Spawn(spawnLocation);
         }
+
+        private void Enemy_OnEnemyKilledByPlayer(Enemy enemy)
+        {
+            _enemyPool.Release(enemy);
+        }
+        
     }
 }

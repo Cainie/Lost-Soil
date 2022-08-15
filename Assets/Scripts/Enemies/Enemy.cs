@@ -13,6 +13,7 @@ namespace Enemies
         private EnemiesController _enemiesController;
 
         public event Action<EnemyData> OnEnemyKilledByPlayer;
+        public event Action<Enemy> OnEnemyKilled;
         public event Action<EnemyData> OnEnemyDamagedByPlayer;
         public event Action<EnemyData> OnEnemyAttack;
 
@@ -67,6 +68,7 @@ namespace Enemies
             } 
             else
             {
+                OnEnemyKilled?.Invoke(this);
                 OnEnemyDamagedByPlayer?.Invoke(_data);
             }
         }
