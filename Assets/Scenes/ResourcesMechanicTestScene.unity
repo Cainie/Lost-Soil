@@ -673,6 +673,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3060515809172320390, guid: 60cf0b6bc4c27a649be90e2b51ceb0e8, type: 3}
+      propertyPath: upgradeButton
+      value: 
+      objectReference: {fileID: 1316930592}
+    - target: {fileID: 3060515809172320390, guid: 60cf0b6bc4c27a649be90e2b51ceb0e8, type: 3}
       propertyPath: ResourcesStorageController
       value: 
       objectReference: {fileID: 141260867}
@@ -739,6 +743,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04fdf1ebd93e57641a1ded89b6e8ffe3, type: 3}
+--- !u!1 &1316930592 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3060515809114552548, guid: 60cf0b6bc4c27a649be90e2b51ceb0e8, type: 3}
+  m_PrefabInstance: {fileID: 1147893825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1497298796
 PrefabInstance:
   m_ObjectHideFlags: 0
