@@ -62,7 +62,7 @@ namespace Player
 
         private void CheckHealthStatus()
         {
-            if (_playerData.health < 0)
+            if (_playerData.health <= 0)
             {
                 OnPlayerDeath?.Invoke();
             }

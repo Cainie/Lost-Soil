@@ -84,12 +84,14 @@ namespace Player
             Die();
         }
 
+        /*
         private void Die()
         {
             OnPlayerDeath?.Invoke();
             Debug.Log("You died~~");
             Debug.Log("Ba dum tss~~");
         }
+        */
 
         private void SetPlayerStartingHealth()
         {
@@ -114,5 +116,18 @@ namespace Player
         {
             OnPlayerMove?.Invoke();
         }
+
+
+        //Maciek
+
+        public GameObject DeathScript;
+        private void Die()
+        {
+            DeathScript.GetComponent<DeathScreen>().Death();
+        }
+
+
+
+
     }
 }
