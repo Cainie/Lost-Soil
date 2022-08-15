@@ -10,7 +10,7 @@ namespace Menu
         public void PlayGame()
         {
             GlobalVariables.isNewGame = true;
-            SceneManager.LoadScene("ResourcesMechanicTestScene");
+            SceneManager.LoadScene("DialogueScene");
         }
 
         public void QuitGame()

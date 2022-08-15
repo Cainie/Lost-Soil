@@ -8,6 +8,7 @@ using GameController;
 public class BuildingMenu : MonoBehaviour
 {
     public GameObject ResourcesStorageController;
+    public GameObject VictoryScreen;
     ResourceType Wood = (ResourceType)System.Enum.Parse(typeof(ResourceType), "Wood");
     ResourceType Stone = (ResourceType)System.Enum.Parse(typeof(ResourceType), "Stone");
     ResourceType Food = (ResourceType)System.Enum.Parse(typeof(ResourceType), "Food");
@@ -27,20 +28,21 @@ public class BuildingMenu : MonoBehaviour
     public TMP_Text description;
 
     private int buidlingLevel;
-    private int buildingId = 0;
+    private int buildingId = 0;  
 
+    
 
     int[,] ResourceNeeded =
     {
         {10, 10, 10, 10},
         {30, 30, 30, 30},
         {50, 50, 50, 50},
-        {80, 80, 80, 80},
+        {80, 80, 80, 80}/*,
         {120, 120, 120, 120},
         {160, 160, 160, 160},
         {200, 200, 200, 200},
         {250, 250, 250, 250},
-        {300, 300, 300, 300}
+        {300, 300, 300, 300}*/
 
     };
 
@@ -51,12 +53,12 @@ public class BuildingMenu : MonoBehaviour
         {2, 2, 2, 2},
         {4, 4, 4, 4},
         {6, 6, 6, 6},
-        {9, 9, 9, 9},
+        {9, 9, 9, 9}/*,
         {12, 12, 12, 12},
         {16, 16, 16, 16},
         {20, 20, 20, 20},
         {25, 25, 25, 25},
-        {30, 30, 30, 30}
+        {30, 30, 30, 30}*/
 
     };
 
@@ -128,7 +130,7 @@ public class BuildingMenu : MonoBehaviour
         buildingId = 5;
         UpdateUI();
     }
-       
+
 
     private void UpdateUI()
     {
@@ -138,25 +140,31 @@ public class BuildingMenu : MonoBehaviour
 
         titleText.text = BuildingNames[buildingId] + buidlingLevel;
         description.text = Descriptions[buildingId];
+            
+        
+            if (buidlingLevel < /*10*/ 5)
+            {
+                woodNeeded.text = ResourceNeeded[(buidlingLevel - 1), 0].ToString();
+                StoneNeeded.text = ResourceNeeded[(buidlingLevel - 1), 1].ToString();
+                EnergyNeeded.text = ResourceNeeded[(buidlingLevel - 1), 2].ToString();
+                FoodNeeded.text = ResourceNeeded[(buidlingLevel - 1), 3].ToString();
+                upgradeButton.SetActive(true);
+            }
+            else
+            {
+                woodNeeded.text = "-";
+                StoneNeeded.text = "-";
+                EnergyNeeded.text = "-";
+                FoodNeeded.text = "-";
+                upgradeButton.SetActive(false);
+            }
 
-        if (buidlingLevel < 10)
-        {
-            woodNeeded.text = ResourceNeeded[(buidlingLevel - 1), 0].ToString();
-            StoneNeeded.text = ResourceNeeded[(buidlingLevel - 1), 1].ToString();
-            EnergyNeeded.text = ResourceNeeded[(buidlingLevel - 1), 2].ToString();
-            FoodNeeded.text = ResourceNeeded[(buidlingLevel - 1), 3].ToString();
-            upgradeButton.SetActive(true);
-        }
-        else
-        {
-            woodNeeded.text = "-";
-            StoneNeeded.text = "-";
-            EnergyNeeded.text = "-";
-            FoodNeeded.text = "-";
-            upgradeButton.SetActive(false);
+       checkVictory();
 
-        }
+
+
     }
+    
 
 
     private void UpgradeBuilding()
@@ -247,10 +255,8 @@ public class BuildingMenu : MonoBehaviour
         woodCurrentAmount = ResourcesStorageController.GetComponent<ResourcesStorageController>().GetStoredResourceAmount(Wood);
         stoneCurrentAmount = ResourcesStorageController.GetComponent<ResourcesStorageController>().GetStoredResourceAmount(Stone);
         foodCurrentAmount = ResourcesStorageController.GetComponent<ResourcesStorageController>().GetStoredResourceAmount(Food);
-        energyCurrentAmount = ResourcesStorageController.GetComponent<ResourcesStorageController>().GetStoredResourceAmount(Energy);
-        Debug.Log(woodCurrentAmount);
-        Debug.Log(ResourceNeeded[(buidlingLevel - 1), 0]);
-
+        energyCurrentAmount = ResourcesStorageController.GetComponent<ResourcesStorageController>().GetStoredResourceAmount(Energy);        
+        
         if ((ResourceNeeded[(buidlingLevel - 1), 0])<= woodCurrentAmount &&
             (ResourceNeeded[(buidlingLevel - 1), 1])<= stoneCurrentAmount &&
             (ResourceNeeded[(buidlingLevel - 1), 2])<= foodCurrentAmount &&
@@ -269,6 +275,9 @@ public class BuildingMenu : MonoBehaviour
             
     }
 
+
+
+
     private void Start()
     {
         UpdateUI();
@@ -277,8 +286,8 @@ public class BuildingMenu : MonoBehaviour
 
 
     private void addingResources()
-    {
-        ResourcesStorageController.GetComponent<ResourcesStorageController>().StoreResource(Wood,ResourceGiven[BuildingLevels[0], 0]);
+    {   
+        ResourcesStorageController.GetComponent<ResourcesStorageController>().StoreResource(Wood, ResourceGiven[BuildingLevels[0], 0]);
         ResourcesStorageController.GetComponent<ResourcesStorageController>().StoreResource(Stone, ResourceGiven[BuildingLevels[1], 1]);
         ResourcesStorageController.GetComponent<ResourcesStorageController>().StoreResource(Food, ResourceGiven[BuildingLevels[2], 2]);
         ResourcesStorageController.GetComponent<ResourcesStorageController>().StoreResource(Energy, ResourceGiven[BuildingLevels[3], 3]);
@@ -286,7 +295,14 @@ public class BuildingMenu : MonoBehaviour
     }
 
 
+    private void checkVictory()
+    {
+        if(BuildingLevels[4] == 5 && BuildingLevels[5] == 5)
+        {
+           ResourcesStorageController.GetComponent<VictoryScreen>().Victory();
+        }
 
+    }
 
 
 }
