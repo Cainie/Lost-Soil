@@ -22,6 +22,7 @@ public class BuildingMenu : MonoBehaviour
     public Image buildingImage;
 
     public GameObject upgradeButton;
+    public GameObject upgradeMenu;
 
     public TMP_Text titleText;
     public TMP_Text woodNeeded, StoneNeeded, EnergyNeeded, FoodNeeded;
@@ -298,8 +299,9 @@ public class BuildingMenu : MonoBehaviour
     private void checkVictory()
     {
         if(BuildingLevels[4] == 5 && BuildingLevels[5] == 5)
-        {
-           ResourcesStorageController.GetComponent<VictoryScreen>().Victory();
+        {   
+            upgradeMenu.SetActive(false);
+            VictoryScreen.GetComponent<VictoryScreen>().Victory();
         }
 
     }

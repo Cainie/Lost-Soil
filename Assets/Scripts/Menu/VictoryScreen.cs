@@ -9,8 +9,7 @@ public class VictoryScreen : MonoBehaviour
       
     public void Victory()
     {
-        victoryScreen.SetActive(true);
-        Time.timeScale = 0f;        
+        victoryScreen.SetActive(true);             
     }
 
     public void LoadMenu()

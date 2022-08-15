@@ -239,6 +239,11 @@ PrefabInstance:
       objectReference: {fileID: 1617880090}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4880e3a5eece9fd419f190ec26541d2a, type: 3}
+--- !u!1 &274471412 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3060515809235341408, guid: 60cf0b6bc4c27a649be90e2b51ceb0e8, type: 3}
+  m_PrefabInstance: {fileID: 1147893825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &387800977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -757,6 +762,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3060515809172320390, guid: 60cf0b6bc4c27a649be90e2b51ceb0e8, type: 3}
+      propertyPath: upgradeMenu
+      value: 
+      objectReference: {fileID: 274471412}
+    - target: {fileID: 3060515809172320390, guid: 60cf0b6bc4c27a649be90e2b51ceb0e8, type: 3}
       propertyPath: VictoryScreen
       value: 
       objectReference: {fileID: 2044018489}
@@ -771,6 +780,10 @@ PrefabInstance:
     - target: {fileID: 3060515809172320393, guid: 60cf0b6bc4c27a649be90e2b51ceb0e8, type: 3}
       propertyPath: m_Name
       value: BuildingUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3060515809235341408, guid: 60cf0b6bc4c27a649be90e2b51ceb0e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60cf0b6bc4c27a649be90e2b51ceb0e8, type: 3}
@@ -1289,6 +1302,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4401390476093217819, guid: d73fb81a3c957624da1fbc5e94f5b9b7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2044018490}
+    - target: {fileID: 4401390476093217819, guid: d73fb81a3c957624da1fbc5e94f5b9b7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401390476093217819, guid: d73fb81a3c957624da1fbc5e94f5b9b7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VictoryScreen, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401390476197575353, guid: d73fb81a3c957624da1fbc5e94f5b9b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401390476227835091, guid: d73fb81a3c957624da1fbc5e94f5b9b7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2044018490}
+    - target: {fileID: 4401390476227835091, guid: d73fb81a3c957624da1fbc5e94f5b9b7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401390476227835091, guid: d73fb81a3c957624da1fbc5e94f5b9b7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VictoryScreen, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4401390477756812183, guid: d73fb81a3c957624da1fbc5e94f5b9b7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1384,6 +1425,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4401390477756812187, guid: d73fb81a3c957624da1fbc5e94f5b9b7, type: 3}
   m_PrefabInstance: {fileID: 2044018488}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2044018490 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4401390477756812200, guid: d73fb81a3c957624da1fbc5e94f5b9b7, type: 3}
+  m_PrefabInstance: {fileID: 2044018488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044018489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 677dc0e787d2de6418085749cbc479d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4347671480530779065
 PrefabInstance:
   m_ObjectHideFlags: 0

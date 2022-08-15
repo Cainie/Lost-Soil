@@ -22,7 +22,7 @@ public class DialogueMenu : MonoBehaviour
 
     void Start()
     {
-        NamePlayer.SetActive(true);
+        NameComputer.SetActive(true);
         NextButton.SetActive(true);
         TextBox.text = dialogue[dialogueNumber];        
     }
@@ -83,21 +83,21 @@ public class DialogueMenu : MonoBehaviour
             "Do you ever shut up?",
             "You need to excuse my friend here, little human. He’s kind of slow. That being said, you ARE an anomaly. Your species was supposed to be entirely wiped out after the invasion of 2137. Why are you here?",
 
-            "*murmurs* plot armor?",
+            "*murmurs* Plot armor?",
 
-            "what?",
+            "What?",
 
-            "what?",
+            "What?",
 
             "I’m going to pretend I didn't hear that. Smartass.",
 
-            "Ai, what is the meaning of plo-",
+            "AI, what is the meaning of plo-",
 
-            "shut. up.",
+            "Shut. up.",
             "Why did you restart the system, human? Is it some kind of perverse sadistic pleasure of yours, to watch me starve to death? Because we are running out of juice, and fast.",
             "Calculations completed. To ensure stability of the system, all measures must be undertaken. “The Error” determined as the only way to achieve necessary resources and repairs.",
 
-            "the error? You even named him already? I’m speechless",
+            "The error? You even named him already? I’m speechless",
 
             "Enabling access to provisions and weaponry storage. Please, take the communication device from the table, and head to the storeroom to collect your equipment.",
 
@@ -105,7 +105,7 @@ public class DialogueMenu : MonoBehaviour
 
             "(happily) I had to liquidate him!",
 
-            "way to scare your new friend off, Comp. Unfortunately that is how I came to be. And now I’m stuck with him until the debug. Which is, forever, judging by the circumstances.",
+            "Way to scare your new friend off, Comp. Unfortunately that is how I came to be. And now I’m stuck with him until the debug. Which is, forever, judging by the circumstances.",
 
             "Error, your new directive is to ensure our survival. The system needs functioning power supplies, and urgent repairs. We can create weaponry, tools and machinery, in exchange for resources transformable into energy.",
 
