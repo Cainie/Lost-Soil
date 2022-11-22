@@ -15,13 +15,15 @@ namespace Player
         private TimeSpan _lastInvulnerableFrameSpan;
 
         public void SetPlayerData(PlayerData playerData)
-        {            _playerData = playerData;
+        {            
+            _playerData = playerData;
             _playerData.health = _playerData.maxHealth;
             OnPlayerHealthValueLoaded?.Invoke();
         }
 
-        public void LoadPlayerHealthValue(int healthValue)
+        public void LoadPlayerHealthValue(PlayerData playerData, int healthValue)
         {
+            _playerData = playerData;
             _playerData.health = healthValue;
             OnPlayerHealthValueLoaded?.Invoke();
         }

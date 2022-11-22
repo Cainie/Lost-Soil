@@ -24,6 +24,7 @@ namespace Weapons.Bullet
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.CompareTag(Tags.ENEMY)) return;
+            
             var enemy = other.GetComponent<Enemy>();
             enemy.TakeDamage(bulletData.bulletDamage);
             BulletHitEffect();

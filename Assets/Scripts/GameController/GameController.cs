@@ -87,10 +87,6 @@ namespace GameController
 
         private bool IsNewGame()
         {
-#if UNITY_EDITOR
-            //for testing purpose
-            return true;
-#endif
             return GlobalVariables.isNewGame;
         }
         

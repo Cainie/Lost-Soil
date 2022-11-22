@@ -30,10 +30,10 @@ namespace Enemies
 
         private void EnemyKilledByPlayer(EnemyData enemyData)
         {
+            OnEnemyKilledByPlayer?.Invoke(enemyData.enemyType);
             if (!IsRandomResourceGained(enemyData.resourceDropChance)) return;
             var resourceGained = PickRandomDropResource(enemyData.availableResourcesUponKill);
             OnEnemyDeathResourcesGained?.Invoke(resourceGained.resourceType, resourceGained.resourceBasicAmount);
-            OnEnemyKilledByPlayer?.Invoke(enemyData.enemyType);
         }
 
         private bool IsRandomResourceGained(float resourceDropChance)
