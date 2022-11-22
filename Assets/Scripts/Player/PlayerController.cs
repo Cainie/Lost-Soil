@@ -70,7 +70,6 @@ namespace Player
             _playerHealthUIController = GameObject.FindGameObjectWithTag(Tags.PLAYER_HEALTH_UI_CONTROLLER).gameObject.GetComponent<PlayerHealthUIController>();
         }
 
-
         private void SubscribeToEvents()
         {
             _playerHealthController.OnPlayerDeath += PlayerHealthController_OnPlayerDeath;
