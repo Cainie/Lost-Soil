@@ -13,6 +13,9 @@ namespace Enemies
         private SpriteRenderer _spriteRenderer;
         private EnemiesController _enemiesController;
         private int _currentHealth;
+        private Vector2 _moveWaypoint;
+        private float _waypointFocusTimer;
+        private bool _isInitialized;
 
         public event Action<EnemyData> OnEnemyKilledByPlayer;
         public event Action<Enemy> OnEnemyKilled;
@@ -21,28 +24,31 @@ namespace Enemies
         
         private void FixedUpdate()
         {
-            if (isActiveAndEnabled)
+            if (!_isInitialized) return;
+
+            if (!IsPlayerNearby()) return;
+
+            _waypointFocusTimer -= Time.unscaledDeltaTime;
+            if (_waypointFocusTimer <= 0)
             {
-                Move();
+                SetNewWaypoint();
+                _waypointFocusTimer = _data.waypointFocusTime;
             }
+            
+            Move();
         }
 
         public void Initialize(Transform playerLocation)
         {
             _playerLocation = playerLocation;
             _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            _isInitialized = true;
         }
 
         public void ChangeAndApplyData(EnemyData data)
         {
             _data = data;
             ApplyData();
-        }
-
-        private void ApplyData()
-        {
-            _currentHealth = _data.maxHealth;
-            _spriteRenderer.sprite = _data.sprite;
         }
 
         public void Spawn(Vector2 spawnLocation)
@@ -55,10 +61,28 @@ namespace Enemies
         
         }
 
+        private void ApplyData()
+        {
+            _currentHealth = _data.maxHealth;
+            _spriteRenderer.sprite = _data.sprite;
+        }
+
+        private bool IsPlayerNearby()
+        {
+            var distanceToPlayer = Vector2.Distance(_playerLocation.position, transform.position);
+            return distanceToPlayer <= _data.aggroRange;
+        }
+
+        private void SetNewWaypoint()
+        {
+            //var waypoint = new Vector2(_playerLocation.position.x,_playerLocation.position.y);
+            _moveWaypoint = _playerLocation.position;
+        }
+
         private void Move()
         {
             var step = _data.speed * Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, _playerLocation.position, step);
+            transform.position = Vector2.MoveTowards(transform.position, _moveWaypoint, step);
         }
 
         public void TakeDamage(int damageTaken)
@@ -87,6 +111,14 @@ namespace Enemies
             playerController.ReceiveAttack(_data.damage);
             OnEnemyAttack?.Invoke(_data);
             Destroy(gameObject);
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (!_isInitialized)
+                return;
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position,_data.aggroRange);
         }
     }
 }

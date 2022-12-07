@@ -12,6 +12,8 @@ namespace Enemies
         public int maxHealth;
         public int damage;
         public float speed;
+        public float aggroRange;
+        public float waypointFocusTime;
         public List<ResourceData> availableResourcesUponKill;
         [Range(0.0f,1.0f)]
         public float resourceDropChance;
