@@ -7,12 +7,13 @@ namespace Player
     public class PlayerMovementController : MonoBehaviour
     {
         public Animator animator;
-        public bool isFlipped;
 
         public event Action OnPlayerMove;
 
         private Rigidbody2D _rigidbody2D;
         private Vector2 _moveDirection;
+        private Vector3 _mousePosition;
+        private Vector3 _mouseWorldPosition;
         private PlayerData _playerData;
 
         private void Awake()
@@ -34,8 +35,7 @@ namespace Player
                 return;
             }
             
-            Move();
-
+            MovePlayer();
         }
         
         public void SetPlayerData(PlayerData playerData)
@@ -55,24 +55,12 @@ namespace Player
             {
                 _moveDirection = Vector2.zero;;
             }
-            _moveDirection = new Vector2(moveX, moveY).normalized;
+            _moveDirection = new Vector2(moveX, moveY);
         }
 
-        private void Move()
+        private void MovePlayer()
         {          
-            _rigidbody2D.velocity = new Vector2(_moveDirection.x * _playerData.moveSpeed, _moveDirection.y * _playerData.moveSpeed);
-
-            if(_moveDirection.x < 0 && isFlipped == false)          
-            {                     
-                animator.transform.Rotate(0, 180, 0);
-                isFlipped = true;
-            }
-            if (_moveDirection.x > 0 && isFlipped == true)
-            {
-                animator.transform.Rotate(0, 180, 0);
-                isFlipped = false;
-            }
-            
+            _rigidbody2D.MovePosition(_rigidbody2D.position + _moveDirection * (_playerData.moveSpeed * Time.fixedDeltaTime));
             OnPlayerMove?.Invoke();
         }
     }

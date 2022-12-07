@@ -10,7 +10,6 @@ namespace Weapons
         
         private bool _isShootButtonPressed;
         private Weapon _weapon;
-        
 
         private void Awake()
         {
@@ -30,7 +29,7 @@ namespace Weapons
 
         private void Update()
         {
-            ProcessInput();    
+            ProcessInput();
             if (_isShootButtonPressed)
             {
                 _weapon.TryShoot();
