@@ -17,6 +17,8 @@ MonoBehaviour:
   maxHealth: 3
   damage: 1
   speed: 2
+  aggroRange: 6
+  waypointFocusTime: 0.5
   availableResourcesUponKill:
   - {fileID: 11400000, guid: 821ebf03de4d63541bc9ae5ade92420a, type: 2}
   - {fileID: 11400000, guid: 6e2279d4c88e77c48a770c30e7aee748, type: 2}
